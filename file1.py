@@ -19,7 +19,7 @@ st.subheader("Asisten Triage & Tanya Jawab Kesehatan Umum")
 
 st.warning("⚠️ **DISCLAIMER:** Chatbot ini hanya memberikan panduan umum berbasis AI dan BUKAN pengganti diagnosis dokter profesional. Jika mengalami kondisi darurat, segera hubungi IGD.")
 
-# --- MINGGU 5: INISIALISASI MEMORI CHAT (SESSION STATE) ---
+# ---  INISIALISASI MEMORI CHAT (SESSION STATE) ---
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         {"role": "assistant", "content": "Halo! Saya MedGuide AI. Anda bisa menceritakan gejala yang Anda rasakan untuk triage awal, atau menanyakan seputar info kesehatan umum. Ada yang bisa saya bantu hari ini?"}
@@ -30,7 +30,7 @@ for message in st.session_state.chat_history:
     with st.chat_message(message["role"]):
         st.write(message["content"])
 
-# --- MINGGU 5: STRICT SYSTEM PROMPT (HYBRID SYSTEM) ---
+# ---  STRICT SYSTEM PROMPT (HYBRID SYSTEM) ---
 SYSTEM_PROMPT = """
 You are "MedGuide AI", a highly cautious, ethical, and empathetic Health Guidance Assistant.
 You can handle two types of inputs:
@@ -54,7 +54,7 @@ OUTPUT FORMAT REQUIREMENTS:
   And follow up with a friendly message.
 """
 
-# --- MINGGU 5: UI COMPONENT - CHAT INPUT ---
+
 if user_input := st.chat_input("Ketik keluhan atau pertanyaan kesehatan Anda di sini..."):
     
     # 1. Tampilkan pesan user di layar
@@ -91,7 +91,7 @@ if user_input := st.chat_input("Ketik keluhan atau pertanyaan kesehatan Anda di 
                     )
                     
                     # Mengirim seluruh riwayat obrolan (jika diperlukan) atau prompt terstruktur
-                    # Untuk kesederhanaan zero-shot Q&A, kita kirimkan konteks saat ini
+                    
                     response = model.generate_content(
                         f"User Query: {user_input}",
                         safety_settings=safety_settings
